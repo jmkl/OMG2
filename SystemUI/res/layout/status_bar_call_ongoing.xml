@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.systemui.statusbar.CallOnGoingView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/statusbar_background" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.0"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/status_bar_call_ongoing_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="right|center"
+            android:textColor="#ffffffff"
+            android:visibility="gone" />
+
+        <Chronometer
+            android:id="@+id/status_bar_call_ongoing_duration"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="left|center"
+            android:paddingLeft="5.0dip"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</com.android.systemui.statusbar.CallOnGoingView>

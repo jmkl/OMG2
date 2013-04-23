@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="clock_font">Roboto-Regular.ttf</string>
+    <string name="app_name">OndeMandeGan!!!</string>
+    <string name="textbattery_font">Geometric.ttf</string>
+    <string name="traffic_state_font">Roboto-Regular.ttf</string>
+    <string name="notifclock_font">Geometric.ttf</string>
+    <string name="notifdate_font">Geometric.ttf</string>
+
+    <dimen name="traffic_state_size">20dip</dimen>
+        <dimen name="clock_size">20dip</dimen>
+
+    <color name="batt_color">#fff</color>
+    <color name="clock_color">#fff</color>
+    <color name="trafficstate_color">#fff</color>
+    <color name="recent_app_tv_color">#00ffffff</color>
+
+    <item name="include_statusbar" type="bool">true</item>
+    
+    
+    <!-- CustomIcon untuak statusbar notipikesyen icon -->
+    <string-array name="packagename_statbaricon">
+ <!-- DONOTDISTURB - usb icon -->
+        <item>com.android.systemui</item>
+ <!-- Friendcaster Freeeeeee -->
+        <item>uk.co.senab.blueNotifyFree</item>
+    </string-array>
+
+</resources>

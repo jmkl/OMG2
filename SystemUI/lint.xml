@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="DefaultLocale">
+        <ignore path="src\dcsms\omg\statusbar\Traffic.java" />
+    </issue>
+    <issue id="NewApi" severity="ignore">
+        <ignore path="src\ca\laplanete\mobile\pageddragdropgrid\DragDropGrid.java" />
+        <ignore path="src\com\android\systemui\statusbar\ClocknShit.java" />
+        <ignore path="src\com\android\systemui\statusbar\StatusBarPolicy.java" />
+        <ignore path="src\com\android\systemui\statusbar\StatusBarService.java" />
+        <ignore path="src\dcsms\omg\notification\AppsLauncher.java" />
+        <ignore path="src\dcsms\omg\notification\Blutut.java" />
+        <ignore path="src\dcsms\omg\notification\Toggles.java" />
+        <ignore path="src\dcsms\omg\notification\TogglesAdapter.java" />
+        <ignore path="src\dcsms\omg\util\CekStatus.java" />
+        <ignore path="src\dcsms\omg\util\TCLImageLoader.java" />
+    </issue>
+</lint>
