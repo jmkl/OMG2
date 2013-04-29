@@ -69,13 +69,12 @@ public class Hello extends SlidingFragmentActivity implements OnClickListener {
 
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		menu.setShadowWidth(10);
-		menu.setShadowDrawable(R.drawable.defaultshadow);
+		menu.setShadowDrawable(R.drawable.shadow);
 		menu.setBehindOffset(width / 4);
 		menu.setFadeDegree(0.35f);
 
 		menu.setSelectorEnabled(true);
-		menu.setSelectorDrawable(R.drawable.ic_logo);
-		menu.setSelectedView(getSlidingMenu().getChildAt(0));
+		menu.setSelectorDrawable(R.drawable.selector);
 		menu.findViewById(R.id.button1).setOnClickListener(this);
 		menu.findViewById(R.id.button2).setOnClickListener(this);
 		menu.findViewById(R.id.button3).setOnClickListener(this);
@@ -85,6 +84,7 @@ public class Hello extends SlidingFragmentActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		menu.setSelectedView(v);
 		switch (v.getId()) {
 		/* power widget */
 		case R.id.button1:

@@ -7,6 +7,7 @@
 
     <style name="MyActionBarStyle" parent="@style/Widget.Sherlock.ActionBar">
         <item name="displayOptions">showCustom</item>
+        <item name="android:displayOptions">showCustom</item>
     </style>
 
     <style name="peding">
@@ -32,7 +33,7 @@
 
     <style name="menuButton" parent="textShadow">
         <item name="android:gravity">left|center_vertical</item>
-        <item name="android:drawableLeft">@drawable/abs__ic_clear</item>
+        <item name="android:drawableLeft">@drawable/abs__ic_menu_share_holo_light</item>
         <item name="android:padding">10dip</item>
         <item name="android:textSize">20dip</item>
     </style>
