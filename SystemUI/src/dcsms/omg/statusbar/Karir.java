@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import dcsms.omg.util.Model;
 import dcsms.omg.util.SBK;
+import dcsms.omg.util.Sett;
 import dcsms.omg.util.Tema;
 import dcsms.omg.util.getPref;
 
@@ -47,9 +48,9 @@ public class Karir extends SBIcon {
 		arrangeLayout();
 		
 	}
-	void arrangeLayout() {		
+	public void arrangeLayout() {		
 		logo.setImageDrawable(mTema.getICON(SBK.CARRIER));		
-		visible = pref.getBoolean(SBK.CARRIER_VISIBLE, true);
+		visible = pref.getBoolean(Sett.Carrier, true);
 		logo.setVisibility(visible ? View.VISIBLE : View.GONE);
 	}
 

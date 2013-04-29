@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Main" parent="@style/Theme.Sherlock">
+        <item name="actionBarStyle">@style/MyActionBarStyle</item>
+    </style>
+
+    <style name="MyActionBarStyle" parent="@style/Widget.Sherlock.ActionBar">
+        <item name="displayOptions">showCustom</item>
+    </style>
+
+    <style name="peding">
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:paddingRight">5dip</item>
+    </style>
+
+    <style name="textShadow">
+        <item name="android:shadowColor">#000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:paddingRight">5dip</item>
+    </style>
+        <style name="textShadow_L" parent="textShadow">
+            <item name="android:shadowColor">#fff</item>
+        <item name="android:textColor">#888</item>        
+        <item name="android:padding">10dip</item>
+        <item name="android:textSize">20dip</item>
+    </style>
+
+    <style name="menuButton" parent="textShadow">
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:drawableLeft">@drawable/abs__ic_clear</item>
+        <item name="android:padding">10dip</item>
+        <item name="android:textSize">20dip</item>
+    </style>
+
+
+    <style name="statbar_config_Button" parent="textShadow">
+        <item name="android:padding">10dip</item>
+        <item name="android:textSize">20dip</item>
+    </style>
+
+</resources>

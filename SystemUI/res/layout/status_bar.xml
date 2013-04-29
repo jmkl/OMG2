@@ -30,37 +30,33 @@
         android:layout_height="match_parent"
         android:orientation="horizontal" >
 
-        <RelativeLayout
+        <dcsms.omg.statusbar.StatusbarLayout
+            android:id="@+id/statusbar_layout"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
             <dcsms.omg.statusbar.Batrai
-                android:layout_toLeftOf="@+id/sb_jam"
                 android:id="@+id/sb_batrai"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent" />
 
             <dcsms.omg.statusbar.Jam
-                android:layout_alignParentRight="true"
                 android:id="@+id/sb_jam"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent" />
 
             <dcsms.omg.statusbar.Sinyal
-               android:layout_alignParentLeft="true"
                 android:id="@+id/sb_sinyal"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent" />
 
             <dcsms.omg.statusbar.Traffic
-                android:layout_toLeftOf="@+id/sb_batrai"
                 android:id="@+id/sb_trafik"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:gravity="center_vertical" />
 
             <dcsms.omg.statusbar.Karir
-                android:layout_toRightOf="@+id/sb_sinyal"
                 android:id="@+id/sb_karir"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
@@ -68,7 +64,6 @@
             <!-- INI ICON NOTIFICATION -->
 
             <com.android.systemui.statusbar.IconMerger
-                android:layout_toRightOf="@+id/sb_karir"
                 android:id="@+id/notificationIcons"
                 android:layout_width="50.0dip"
                 android:layout_height="fill_parent"
@@ -76,10 +71,11 @@
                 android:orientation="horizontal"
                 android:paddingLeft="1.0dip" />
 
-<!--             <dcsms.omg.statusbar.BatteryBar -->
-<!--                 android:layout_width="fill_parent" -->
-<!--                 android:layout_height="wrap_content" /> -->
-        </RelativeLayout>
+            <dcsms.omg.statusbar.BatteryBar
+                android:id="@+id/sb_baterai_line"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </dcsms.omg.statusbar.StatusbarLayout>
 
         <LinearLayout
             android:id="@+id/statusIcons"

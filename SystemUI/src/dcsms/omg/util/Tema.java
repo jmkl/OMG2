@@ -523,7 +523,7 @@ public class Tema {
 		return d;
 	}
 
-	public int getWarnaTogel(String namaString) {
+	public int getWarna(String namaString) {
 		int warna = 0xffffffff;
 		Resources res = null;
 		try {

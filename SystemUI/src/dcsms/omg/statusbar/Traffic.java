@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import dcsms.omg.util.SBK;
+import dcsms.omg.util.Sett;
 import dcsms.omg.util.Tema;
 import dcsms.omg.util.getPref;
 
@@ -46,14 +47,14 @@ public class Traffic extends TextView {
 
 	}
 
-	private void modifInterface() {
-		show = pref.getBoolean(SBK.TRAFFIC_STATE_ENABLE, true);
+	public void modifInterface() {
+		show = pref.getBoolean(Sett.TrafficState, true);
 		shadx = sbPref.getInt(SBK.T_X, 1);
 		shady = sbPref.getInt(SBK.T_Y, 1);
 		shadrad = sbPref.getInt(SBK.T_R, 1);
 		shadcolor = sbPref.getInt(SBK.T_Col, 0x22000000);
 		setShadowLayer(shadrad, shadx, shady, shadcolor);
-		setTextColor(mTema.getWarnaTogel(SBK.T_MAIN_COL));
+		setTextColor(mTema.getWarna(SBK.T_MAIN_COL));
 		setTypeface(mTema.getFontfromTheme(mTema
 				.getStringfromTheme(SBK.FONT_TRAFIK)));
 		setTextSize(mTema.getDefaultDimen(SBK.UKURAN_TRAFIK));
@@ -70,14 +71,13 @@ public class Traffic extends TextView {
 
 	private void showTraffikState() {
 
-		
+		if(show){
 			if (showme) {
 				setVisibility(View.VISIBLE);
-				show = true;
 			} else {
 				setVisibility(View.GONE);
-				show = false;
 			}
+		}
 		mTrafik = (show ? false : true);
 		setVisibility(show ? View.VISIBLE : View.GONE);
 		updateState();

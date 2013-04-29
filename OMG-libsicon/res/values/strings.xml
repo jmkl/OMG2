@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="omg_trafficstate">Traffic State</string>
+    <string name="omg_embel2jam">Ukuran AM/PM Jam</string>
+    <string name="omg_dayconfig">Hari</string>
+    <string name="omg_ampm">AM/PM</string>
+    <string name="omg_carrierlogo">Carrier</string>
+    <string name="omg_overlap">Overlap Icon Sinyal</string>
+    <string name="omg_batline">Bottom BatteryLine</string>
+    <string name="omg_rounded">Rounded Corner</string>
+</resources>

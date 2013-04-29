@@ -48,6 +48,7 @@ import android.telephony.ServiceState;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.util.Slog;
+import android.util.secutil.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.WindowManagerImpl;
@@ -564,6 +565,9 @@ public class StatusBarPolicy {
 					|| action
 							.equals(WimaxManagerConstants.WIMAX_STATE_CHANGED_ACTION)) {
 				updateWiMAX(intent);
+			}else if(action.equals(SBK.UPDATE_LAYOUT)){
+				android.util.Log.e(TAG, "update statusbar layout");
+				sbService.updateStatusBarLayout();
 			}
 		}
 	};
@@ -697,6 +701,10 @@ public class StatusBarPolicy {
 		filter.addAction(Intent.ACTION_TIME_TICK);
 		filter.addAction(Intent.ACTION_TIME_CHANGED);
 		filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+		
+		//
+		filter.addAction(SBK.UPDATE_LAYOUT);
+		filter.addAction(Model.UPDATE_STATUSBAR);
 
 		mContext.registerReceiver(mIntentReceiver, filter, null, mHandler);
 

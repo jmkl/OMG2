@@ -82,7 +82,7 @@ public class NotificationLayout extends LinearLayout {
 										if (event_tit != null)
 											event_tit
 													.setTextColor(tema
-															.getWarnaTogel(Tema.WARNA_NOTIF_KONTEN_TITLE));// ok
+															.getWarna(Tema.WARNA_NOTIF_KONTEN_TITLE));// ok
 																											// pulo
 
 										LinearLayout des = (LinearLayout) konten
@@ -95,12 +95,12 @@ public class NotificationLayout extends LinearLayout {
 
 											if (desc != null)
 												desc.setTextColor(tema
-														.getWarnaTogel(Tema.WARNA_NOTIF_KONTEN_DESC));
+														.getWarna(Tema.WARNA_NOTIF_KONTEN_DESC));
 
 											if (date != null)
 												((TextView) date)
 														.setTextColor(tema
-																.getWarnaTogel(Tema.WARNA_NOTIF_KONTEN_DATE));
+																.getWarna(Tema.WARNA_NOTIF_KONTEN_DATE));
 										}
 									}
 								}

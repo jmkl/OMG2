@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import dcsms.omg.util.Model;
 import dcsms.omg.util.SBK;
+import dcsms.omg.util.Sett;
 import dcsms.omg.util.Tema;
 import dcsms.omg.util.getPref;
 
@@ -119,8 +120,8 @@ public class Batrai extends SBIcon {
 		baterai.setVisibility(image ? View.VISIBLE : View.GONE);
 	}
 
-	private void UpdateBatraiView() {
-		batt_MODE = pref.getBaterai_mode();
+	public void UpdateBatraiView() {
+		batt_MODE = pref.getInt(Sett.ModelBatteryIcon, 0);
 
 		switch (batt_MODE) {
 		case BATT_MODE_ICON:
@@ -196,7 +197,7 @@ public class Batrai extends SBIcon {
 		shadrad = sbPref.getInt(SBK.BAT_R, 1);
 		shadcolor = sbPref.getInt(SBK.BAT_Col, 0xff000000);
 		bat_text.setShadowLayer(shadrad, shadx, shady, shadcolor);
-		bat_text.setTextColor(mTema.getWarnaTogel(SBK.BAT_MAIN_COL));
+		bat_text.setTextColor(mTema.getWarna(SBK.BAT_MAIN_COL));
 		bat_text.setTypeface(mTema.getFontfromTheme(mTema
 				.getStringfromTheme(SBK.FONT_BAT)));
 		bat_text.setTextSize(mTema.getDefaultDimen(SBK.UKURAN_BATT));

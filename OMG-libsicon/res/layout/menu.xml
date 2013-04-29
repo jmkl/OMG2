@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     android:background="@color/galok" >
+
+    <Button
+        android:id="@+id/button1"
+        style="@style/menuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/omg_menu_item"
+        android:text="PowerWidget" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/menuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/omg_menu_item"
+        android:text="Statusbar" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/menuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/omg_menu_item"
+        android:text="Color" />
+
+    <Button
+        android:id="@+id/button4"
+        style="@style/menuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/omg_menu_item"
+        android:text="Misc" />
+
+    <Button
+        android:id="@+id/button5"
+        style="@style/menuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/omg_menu_item"
+        android:text="Tutorial" />
+
+</LinearLayout>

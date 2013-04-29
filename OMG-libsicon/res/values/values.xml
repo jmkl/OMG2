@@ -9,7 +9,7 @@
     <string name="notifdate_font">Geometric.ttf</string>
 
     <dimen name="traffic_state_size">20dip</dimen>
-        <dimen name="clock_size">20dip</dimen>
+        <dimen name="clock_size">22dip</dimen>
 
     <color name="batt_color">#fff</color>
     <color name="clock_color">#fff</color>

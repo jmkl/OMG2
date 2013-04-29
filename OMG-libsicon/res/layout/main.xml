@@ -3,16 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Hello" 
-    android:background="@drawable/omg_splashscreen">
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/omg_mainbutton"/>
-
+    android:padding="10dip"
+    android:background="@color/galok" >
+    <FrameLayout
+        android:background="@drawable/rounded_putih"
+        android:id="@+id/konten_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

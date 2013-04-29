@@ -17,9 +17,6 @@ public class SBIcon extends LinearLayout {
 		this.mContext = context;
 		Inisiasi();
 	}
-
-
-
 	protected void Inisiasi() {
 		globalparams = new LayoutParams(LayoutParams.WRAP_CONTENT,
 				LayoutParams.MATCH_PARENT);

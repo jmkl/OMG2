@@ -1,5 +1,19 @@
 package dcsms.omg.statusbar;
-
+/*
+ * Copyright (C) 2013 jimikill
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -10,6 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import dcsms.omg.util.SBK;
+import dcsms.omg.util.Sett;
 import dcsms.omg.util.Tema;
 import dcsms.omg.util.getPref;
 
@@ -28,33 +43,6 @@ public class Sinyal extends SBIcon {
 		Inisiasi();
 	}
 
-	// public void UpdateSinyal(Intent intent) {
-	// String action = intent.getAction();
-	//
-	// if (action.equals(Model.UPDATE_STATUSBAR)) {
-	// Inisiasi();
-	// }
-	// if (action.equals(SBK.UPDATE_LAYOUT)) {
-	// Inisiasi();
-	//
-	// }
-	// if (action.equals("android.intent.action.ALARM_CHANGED")) {
-	// isAlarm = intent.getBooleanExtra("alarmSet", false);
-	// Inisiasi();
-	// }
-	// if (action.equals(Intent.ACTION_HEADSET_PLUG)) {
-	// isHeadset = intent.getIntExtra("state", 0) == 1;
-	// Inisiasi();
-	// }
-	// if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
-	// isBlutut = cekBlutut();
-	// Inisiasi();
-	//
-	// }
-	// if (action.equals(AudioManager.RINGER_MODE_CHANGED_ACTION)) {
-	// Inisiasi();
-	// }
-	// }
 
 	@Override
 	protected void Inisiasi() {
@@ -64,10 +52,10 @@ public class Sinyal extends SBIcon {
 
 	}
 
-	private void aturulangLayout() {
+	public void aturulangLayout() {
 		Log.e(getClass().getSimpleName(), "ATURULANG");
-		overlap = pref.getBoolean(SBK.SIGNAL_OVERLAP, true);
-		IOkanan = pref.getBoolean(SBK.SIGNALIO_DIKANAN, false);
+		overlap = pref.getBoolean(Sett.Overlap, true);
+		IOkanan = pref.getBoolean(Sett.SinyalDikanan, false);
 
 		if (sinyal != null)
 			removeView(sinyal);

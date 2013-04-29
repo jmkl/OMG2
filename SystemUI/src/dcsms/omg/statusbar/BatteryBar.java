@@ -21,6 +21,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
 import dcsms.omg.util.Model;
 import dcsms.omg.util.SBK;
+import dcsms.omg.util.Sett;
 import dcsms.omg.util.getPref;
 
 public class BatteryBar extends RelativeLayout implements Animatable {
@@ -160,7 +161,7 @@ public class BatteryBar extends RelativeLayout implements Animatable {
 				updateBatteryBar();
 			}
 
-			if (action.equals(Model.UPDATE_STATUSBAR)) {
+			if (action.equals(SBK.UPDATE_LAYOUT)) {
 				updateBatteryBar();
 
 			}
@@ -175,7 +176,7 @@ public class BatteryBar extends RelativeLayout implements Animatable {
 
 	final void updateBatteryBar() {
 		int colour = getBatteryColour();
-		int batt_MODE = new getPref(mContext, Model.PREF_JUDUL).getInt(SBK.BATTERYMODE, 0);
+		int batt_MODE = new getPref(mContext, Model.PREF_JUDUL).getInt(Sett.ModelBatteryIcon, 0);
 		if(batt_MODE==4)
 			style=1;
 		else

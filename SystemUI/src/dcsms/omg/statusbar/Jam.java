@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.content.Context;
-import android.content.Intent;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.RelativeSizeSpan;
@@ -13,8 +12,8 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
-import dcsms.omg.util.Model;
 import dcsms.omg.util.SBK;
+import dcsms.omg.util.Sett;
 import dcsms.omg.util.Tema;
 import dcsms.omg.util.getPref;
 
@@ -54,7 +53,7 @@ public class Jam extends SBIcon {
 
 	}
 
-	private void updateView() {
+	public void updateView() {
 		visibel = pref.getBoolean(SBK.JAM_ONOFF, true);
 		if (visibel) {
 			setVisibility(View.VISIBLE);
@@ -70,20 +69,21 @@ public class Jam extends SBIcon {
 		shadrad = sbPref.getInt(SBK.JAM_R, 1);
 		shadcolor = sbPref.getInt(SBK.JAM_Col, 0x22000000);
 		jam.setShadowLayer(shadrad, shadx, shady, shadcolor);
-		jam.setTextColor(mTema.getWarnaTogel(SBK.JAM_MAIN_COL));
+		jam.setTextColor(mTema.getWarna(SBK.JAM_MAIN_COL));
 		jam.setTypeface(mTema.getFontfromTheme(mTema
 				.getStringfromTheme(SBK.FONT_JAM)));
 		jam.setTextSize(mTema.getDefaultDimen(SBK.UKURAN_JAM));
 
-		hari = pref.getBoolean(SBK.JAM_HARI, false);
-		ampm = pref.getBoolean(SBK.JAM_AMPM, true);
-		mode = pref.getBoolean(SBK.JAM_HARI_AMPM_MODE, false);
+		
 		UpdateJAM();
 		
 
 	}
 	
 	public void UpdateJAM(){
+		hari = pref.getBoolean(Sett.Hari, false);
+		ampm = pref.getBoolean(Sett.AMPM, true);
+		mode = pref.getBoolean(Sett.UkuranAMPM, false);
 		Date now = new Date();
 		String form = "E HH:mm a";
 

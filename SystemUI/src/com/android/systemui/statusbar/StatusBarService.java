@@ -46,9 +46,7 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
-import android.telephony.ServiceState;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Pair;
 import android.util.Slog;
 import android.util.secutil.Log;
@@ -69,10 +67,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.RelativeLayout.LayoutParams;
 
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.statusbar.StatusBarIcon;
@@ -83,12 +82,15 @@ import com.android.systemui.R;
 import dcsms.omg.notification.NotificationLayout;
 import dcsms.omg.notification.Toggles;
 import dcsms.omg.statusbar.Batrai;
+import dcsms.omg.statusbar.BatteryBar;
 import dcsms.omg.statusbar.Jam;
 import dcsms.omg.statusbar.Karir;
 import dcsms.omg.statusbar.Sinyal;
+import dcsms.omg.statusbar.StatusbarLayout;
 import dcsms.omg.statusbar.Traffic;
 import dcsms.omg.util.Model;
 import dcsms.omg.util.SBK;
+import dcsms.omg.util.Sett;
 import dcsms.omg.util.Tema;
 import dcsms.omg.util.getPref;
 
@@ -98,12 +100,16 @@ public class StatusBarService extends Service implements CommandQueue.Callbacks 
 	static final boolean SPEW = false;
 	ItemTouchDispatcher mTouchDispatcher;
 	CallOnGoingView mCallOnGoingView;
-
+	WindowManager.LayoutParams wmstatbar;
+	WindowManager.LayoutParams wmanrounded;
+	StatusbarLayout sblayout;
+	View roundedView;
 	Batrai sb_batt;
 	Sinyal sb_sinyal;
 	Traffic sb_trafik;
-	 Karir sb_karir;
-	 Jam sb_jam;
+	Karir sb_karir;
+	Jam sb_jam;
+	BatteryBar sb_batbar;
 
 	getPref pref;
 	getPref sbPref;
@@ -450,22 +456,25 @@ public class StatusBarService extends Service implements CommandQueue.Callbacks 
 		mCallOnGoingView.mService = this;
 
 		// XXX statusbarshit
+		sblayout = (StatusbarLayout) sb.findViewById(R.id.statusbar_layout);
 		sb_batt = (Batrai) sb.findViewById(R.id.sb_batrai);
 		sb_sinyal = (Sinyal) sb.findViewById(R.id.sb_sinyal);
-		 sb_jam = (Jam)sb.findViewById(R.id.sb_jam);
-		 sb_karir =(Karir)sb.findViewById(R.id.sb_karir);
+		sb_jam = (Jam) sb.findViewById(R.id.sb_jam);
+		sb_karir = (Karir) sb.findViewById(R.id.sb_karir);
 
 		sb_trafik = (Traffic) sb.findViewById(R.id.sb_trafik);
+		sb_batbar = (BatteryBar) sb.findViewById(R.id.sb_baterai_line);
 		//
 		setTemanPref();
 		setAreThereNotifications();
+		arrangelayout();
 	}
 
 	private void setTemanPref() {
 		sb_batt.setReferensi(mTema, sbPref, pref);
 		sb_sinyal.setReferensi(mTema, sbPref, pref);
-		 sb_jam.setReferensi(mTema,sbPref,pref);
-		 sb_karir.setReferensi(mTema,sbPref,pref);
+		sb_jam.setReferensi(mTema, sbPref, pref);
+		sb_karir.setReferensi(mTema, sbPref, pref);
 		sb_trafik.setReferensi(mTema, sbPref, pref);
 
 	}
@@ -568,8 +577,18 @@ public class StatusBarService extends Service implements CommandQueue.Callbacks 
 		lp.gravity = Gravity.TOP | Gravity.FILL_HORIZONTAL;
 		lp.setTitle("StatusBar");
 		lp.windowAnimations = com.android.internal.R.style.Animation_StatusBar;
-
+		wmstatbar = lp;
 		WindowManagerImpl.getDefault().addView(view, lp);
+		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		roundedView = inflater.inflate(R.layout.rounded, null);
+		wmanrounded = new WindowManager.LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.MATCH_PARENT, 0, 0,
+				WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+				WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+						| WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+						| WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
+				PixelFormat.TRANSLUCENT);
+		WindowManagerImpl.getDefault().addView(roundedView, wmanrounded);
 
 	}
 
@@ -821,15 +840,13 @@ public class StatusBarService extends Service implements CommandQueue.Callbacks 
 		// Construct the icon.
 		final StatusBarIconView iconView = new StatusBarIconView(this,
 				notification.pkg + "/0x" + Integer.toHexString(notification.id));
-		String paket=notification.pkg;
-		
-			
+		String paket = notification.pkg;
 
 		StatusBarIcon ic = new StatusBarIcon(notification.pkg,
 				notification.notification.icon,
 				notification.notification.iconLevel,
 				notification.notification.number);
-		
+
 		if (!iconView.set(ic)) {
 			handleNotificationError(key, notification, "Coulding create icon: "
 					+ ic);
@@ -1755,8 +1772,8 @@ public class StatusBarService extends Service implements CommandQueue.Callbacks 
 	}
 
 	int getExpandedHeight() {
-		return mDisplay.getHeight() - mCloseView.Height();// XXX -
-															// mStatusBarView.Height()
+		return mDisplay.getHeight() - mCloseView.Height();// XXX
+															// -mStatusBarView.Height()
 	}
 
 	void updateExpandedHeight() {
@@ -2007,9 +2024,176 @@ public class StatusBarService extends Service implements CommandQueue.Callbacks 
 	public void setTraffic(boolean bool) {
 		sb_trafik.TrafikOnOFF(bool);
 	}
-	
-	public void setJam(){
+
+	public void setJam() {
 		sb_jam.UpdateJAM();
+	}
+
+	public void updateStatusBarLayout() {
+		curTema = new Tema(mContext);
+		pref = new getPref(mContext, Model.PREF_JUDUL);
+		sbPref = new getPref(mContext, SBK.STATBAR_PREF);
+		sTema = new Tema(mContext);
+
+		sb_jam.UpdateJAM();
+		sb_batt.UpdateBatraiView();
+		sb_karir.arrangeLayout();
+		sb_sinyal.aturulangLayout();
+		sb_trafik.modifInterface();
+
+		updateroundedCorner();
+
+		arrangelayout();
+
+	}
+
+	private void updateroundedCorner() {
+
+		boolean round = pref.getBoolean(Sett.RoundedCorner, false);
+		roundedView.setVisibility(round ? View.VISIBLE : View.INVISIBLE);
+		WindowManagerImpl.getDefault().updateViewLayout(roundedView, wmanrounded);
+
+	}
+
+	/**
+	 * sebenernya banyak kemungkinan buat ngeleot statusbar ni matematikanya
+	 * kira gmana ya?? kita punya view 7 biji ...di kira2in aj itu silahkan di
+	 * tambhain kemungkinan lain n tambahin d libicon cek
+	 * 
+	 * @see systemui.libsicon.configfragment.StatusbarConfig.java
+	 */
+	public void arrangelayout() {
+
+		pref = new getPref(mContext, Model.PREF_JUDUL);
+		int mode = pref.getInt(Sett.StatusbarLayout, 0);
+		boolean istop = pref.getBoolean(Sett.BottomBatteryLine, false);
+		android.util.Log.e("Layout", "On Layout Update" + mode);
+		View vbat = sb_batt;
+		View vjam = sb_jam;
+		View vsinyal = sb_sinyal;
+		View vtraf = sb_trafik;
+		View vkarir = sb_karir;
+		View vnotif = mNotificationIcons;
+		View vbar = sb_batbar;
+
+		LayoutParams bar = new LayoutParams(LayoutParams.MATCH_PARENT,
+				pref.getInt(SBK.BAT_LINE_HEIGHT, 1));
+		if (istop)
+			bar.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+		else
+			bar.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+
+		vbar.setLayoutParams(bar);
+
+		LayoutParams kanan = new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT);
+		kanan.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
+		LayoutParams kiri = new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT);
+		kiri.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+
+		LayoutParams tengah = new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT);
+		tengah.addRule(RelativeLayout.CENTER_IN_PARENT);
+
+		LayoutParams jam = new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT);
+		LayoutParams batt = new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT);
+		LayoutParams karir = new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT);
+		LayoutParams sinyal = new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT);
+		LayoutParams trafik = new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT);
+		LayoutParams notif = new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.MATCH_PARENT);
+
+		switch (mode) {
+		case 0:
+			showall();
+			vjam.setLayoutParams(tengah);
+			vbat.setLayoutParams(kanan);
+			vkarir.setLayoutParams(kiri);
+
+			sinyal.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			sinyal.setMargins(0, 0, vbat.getWidth(), 0);
+			vsinyal.setLayoutParams(sinyal);
+
+			trafik.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			trafik.setMargins(0, 0, vbat.getWidth() + vsinyal.getWidth(), 0);
+			vtraf.setLayoutParams(trafik);
+
+			notif.addRule(RelativeLayout.RIGHT_OF, vkarir.getId());
+			vnotif.setLayoutParams(notif);
+
+			break;
+
+		case 1:
+			showall();
+			vjam.setLayoutParams(kanan);
+			vkarir.setLayoutParams(kiri);
+
+			batt.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			batt.setMargins(0, 0, vjam.getWidth(), 0);
+			vbat.setLayoutParams(batt);
+
+			sinyal.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			sinyal.setMargins(0, 0, vbat.getWidth() + vjam.getWidth(), 0);
+
+			vsinyal.setLayoutParams(sinyal);
+
+			trafik.addRule(RelativeLayout.LEFT_OF, vsinyal.getId());
+			vtraf.setLayoutParams(trafik);
+
+			notif.addRule(RelativeLayout.RIGHT_OF, vkarir.getId());
+			vnotif.setLayoutParams(notif);
+
+			break;
+		case 2:
+			Jam.showme(false);
+			vjam.setLayoutParams(tengah);
+			vbat.setLayoutParams(kanan);
+			vkarir.setLayoutParams(kiri);
+
+			sinyal.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			sinyal.setMargins(0, 0, vbat.getWidth(), 0);
+			vsinyal.setLayoutParams(sinyal);
+
+			trafik.addRule(RelativeLayout.LEFT_OF, vsinyal.getId());
+			vtraf.setLayoutParams(trafik);
+
+			notif.addRule(RelativeLayout.RIGHT_OF, vkarir.getId());
+			vnotif.setLayoutParams(notif);
+
+			break;
+		case 3:
+			showall();
+			vjam.setLayoutParams(tengah);
+			vbat.setLayoutParams(kiri);
+
+			vsinyal.setLayoutParams(kanan);
+
+			karir.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			karir.setMargins(0, 0, vsinyal.getWidth(), 0);
+			vkarir.setLayoutParams(karir);
+
+			trafik.addRule(RelativeLayout.LEFT_OF, vkarir.getId());
+			vtraf.setLayoutParams(trafik);
+
+			notif.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+			notif.setMargins(vbat.getWidth(), 0, 0, 0);
+			vnotif.setLayoutParams(notif);
+
+			break;
+		}
+
+	}
+
+	private void showall() {
+		Jam.showme(true);
+
 	}
 
 	// public void UpdateJam(Intent intent) {

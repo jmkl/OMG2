@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="galok">#ff222222</color>
+    <color name="atas">#111</color>
+    <color name="atas2">#221a22</color>
+    <color name="bawah">#111</color>
+    <color name="sp_putih">#10ffffff</color>
+    <color name="sp_hitam">#4c000000</color>
+</resources>

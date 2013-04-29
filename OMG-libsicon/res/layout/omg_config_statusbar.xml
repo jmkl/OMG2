@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+               <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <Spinner
+                android:id="@+id/omg_sblayout"
+                style="@style/Widget.Sherlock.Spinner.DropDown.ActionBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <include layout="@layout/separator_horizontal" />
+               <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <Spinner
+                android:id="@+id/omg_battmode"
+                style="@style/Widget.Sherlock.Spinner.DropDown.ActionBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <include layout="@layout/separator_horizontal" />
+         
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <TextView
+                style="@style/textShadow_L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/omg_trafficstate" />
+
+            <CheckBox
+                android:id="@+id/omg_traffic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/omg_cb_btn"
+                android:minWidth="76dip" />
+        </LinearLayout>
+
+        <include layout="@layout/separator_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <TextView
+                style="@style/textShadow_L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/omg_embel2jam" />
+
+            <CheckBox
+                android:id="@+id/omg_ampmsize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/omg_cb_btn"
+                android:minWidth="76dip" />
+        </LinearLayout>
+
+        <include layout="@layout/separator_horizontal" />
+
+ 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <TextView
+                style="@style/textShadow_L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/omg_dayconfig" />
+
+            <CheckBox
+                android:id="@+id/omg_hari"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/omg_cb_btn"
+                android:minWidth="76dip" />
+        </LinearLayout>
+
+        <include layout="@layout/separator_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <TextView
+                style="@style/textShadow_L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/omg_ampm" />
+
+            <CheckBox
+                android:id="@+id/omg_ampm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/omg_cb_btn"
+                android:minWidth="76dip" />
+        </LinearLayout>
+
+        <include layout="@layout/separator_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <TextView
+                style="@style/textShadow_L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/omg_carrierlogo" />
+
+            <CheckBox
+                android:id="@+id/omg_carrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/omg_cb_btn"
+                android:minWidth="76dip" />
+        </LinearLayout>
+
+        <include layout="@layout/separator_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <TextView
+                style="@style/textShadow_L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/omg_overlap" />
+
+            <CheckBox
+                android:id="@+id/omg_overlap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/omg_cb_btn"
+                android:minWidth="76dip" />
+        </LinearLayout>
+
+        <include layout="@layout/separator_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <TextView
+                style="@style/textShadow_L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/omg_batline" />
+
+            <CheckBox
+                android:id="@+id/omg_battline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/omg_cb_btn"
+                android:minWidth="76dip" />
+        </LinearLayout>
+
+        <include layout="@layout/separator_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+                        <TextView
+                            style="@style/textShadow_L"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/omg_rounded" />
+
+            <CheckBox
+                android:id="@+id/omg_rounded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/omg_cb_btn"
+                android:minWidth="76dip" />
+        </LinearLayout>
+
+        <include layout="@layout/separator_horizontal" />
+
+    </LinearLayout>
+
+</ScrollView>
