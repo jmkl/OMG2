@@ -1,4 +1,4 @@
 Butuh lib
 
 ActionBarSherlock
-SlidingMenu (modip __Activity jadi Sherlock___Activity)
+SlidingMenu (modip .__Activity jadi Sherlock___Activity)
